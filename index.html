@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+
+    <script>
+        let users = [
+            { name: "taher", age: 14 },
+            { name: "ahmed", age: 25 },
+            { name: "salem", age: 35 },
+            { name: "mohamed", age: 18 },
+            { name: "sara", age: 22 }
+        ];
+
+        users = users.filter(user => user.age > 18);
+        console.log(users);
+
+        let namesUser =users.map(user => user.name);
+        console.log(namesUser);
+
+    </script>
+</body>
+</html>
