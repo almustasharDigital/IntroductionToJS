@@ -1,18 +1,22 @@
-const originalProducts = [
-    { name: "Laptop", price: 1000 },
-    { name: "Phone", price: 500 },
-    { name: "Ipad", price: 100 }
+const orders = [
+    { id: 101, amount: 55.00, status: 'completed' },
+    { id: 102, amount: 32.50, status: 'pending' },
+    { id: 103, amount: 120.00, status: 'completed' },
+    { id: 104, amount: 15.25, status: 'cancelled' }
 ];
-const taxedProducts = originalProducts.map(product => {
-    return {
-        name: product.name,
-        price: product.price * 1.15 // إضافة 15% ضريبة
-    };
-});
-const listElement = document.getElementById('taxed-list');
-taxedProducts.forEach(product => {
-    const li = document.createElement('li');
-    li.innerHTML = `المنتج: ${product.name} - السعر بعد الضريبة: <span class="price-tag">${product.price.toFixed(2)}</span>`;
-    listElement.appendChild(li);
-});
-console.log("Taxed List:", taxedProducts);
+function filterCompletedOrders(data) {
+    return data
+        .filter(order => order.status === 'completed')
+        .map(({ id, amount }) => ({ id, amount }));
+}
+function renderOrders() {
+    const container = document.getElementById('output');
+    const completedOrders = filterCompletedOrders(orders);
+    completedOrders.forEach(order => {
+        const div = document.createElement('div');
+        div.className = 'order-card';
+        div.innerHTML = `رقم الطلب: ${order.id} | المبلغ: ${order.amount}`;
+        container.appendChild(div);
+    });
+}
+renderOrders();
